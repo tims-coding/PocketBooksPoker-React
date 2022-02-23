@@ -1,13 +1,684 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+
+::-webkit-scrollbar {
+  width: 0.5em;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+::-webkit-scrollbar-track {
+  background-color: #212121;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #9e9e9e;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #bdbdbd;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  overflow: hidden;
+}
+
+body {
+  min-height: 100vh;
+  font-family: "Open Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  background-color: #303030;
+}
+
+#root {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.App {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  overflow-x: hidden;
+}
+
+.Header {
+  width: 100%;
+  background-color: #424242;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  z-index: 2;
+}
+
+.Header h2 {
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: medium;
+}
+
+.Header .icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 75px;
+  color: white;
+}
+
+.Selections {
+  width: 100%;
+}
+
+.Selections .content {
+  display: flex;
+  width: 100%;
+  height: 50px;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #424242;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.Selections h1 {
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: small;
+}
+
+.Selections p {
+  color: #9e9e9e;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: xx-small;
+}
+
+.Selections .icon {
+  color: #2196f3;
+  font-size: 25px;
+  padding: 0rem 0.5rem;
+}
+
+.Selections .pdf .icon {
+  color: #2196f3;
+}
+
+.Selections .transactions .icon {
+  color: #ffa000;
+}
+
+.Selections .reports .icon {
+  color: #4caf50;
+}
+
+.Selections .add-user .icon {
+  color: white;
+  align-self: center;
+}
+
+.Selections .add-user {
+  background-color: #326c9b;
+  height: 65px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  cursor: auto;
+}
+
+.Selections .form-content,
+.Selections input {
+  padding-top: 0.15em;
+}
+
+.Selections .add-button {
+  margin-left: auto;
+  align-self: center;
+  background-color: #326c9b;
+  border: 2px solid #bdbdbd;
+  border-radius: 0.5em;
+  padding: 0.5rem;
+  color: white;
+}
+
+.Selections .form {
+  position: relative;
+  width: 20rem;
+  margin-top: 0.2em;
+}
+
+.Selections .form-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  outline: 0;
+  border-width: 0 0 2px;
+  border-color: #bdbdbd;
+  background-color: #326c9b;
+  font-family: "Poppins", sans-serif;
+  outline: none;
+  color: white;
+  padding: 1rem;
+  background: none;
+}
+
+.Selections .form-input:hover {
+  border-color: white;
+}
+
+.Selections .form-input:focus {
+  border-color: lightblue;
+}
+
+.Selections .form-label {
+  position: absolute;
+  left: 0rem;
+  top: 0.5rem;
+  padding: 0 0.5rem;
+  color: white;
+  cursor: text;
+  transition: top 200ms ease-in, left 200ms ease-in, font-size 200ms ease-in;
+  background-color: #326c9b;
+}
+
+.form-input:focus ~ .form-label,
+.form-input:not(:placeholder-shown).form-input:not(:focus) ~ .form-label {
+  top: -0.275rem;
+  left: 0.75em;
+  font-size: x-small;
+}
+
+.UsersList {
+  max-height: 200;
+  overflow-y: scroll;
+  width: 100%;
+}
+
+.UsersList .user-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  height: 55px;
+  width: 100%;
+  border: #616161 1px solid;
+  background-color: #424242;
+  z-index: 1;
+}
+
+.user-content:hover {
+  border: #9e9e9e 2px solid;
+  height: 60px;
+  background-color: #303030;
+}
+
+.UsersList .user-name-description h2 {
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: small;
+}
+
+.UsersList .user-name-description p {
+  color: #9e9e9e;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: xx-small;
+}
+
+.UsersList .user-avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: lightskyblue;
+  color: white;
+  padding: 0.5rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  margin: 0rem 0.75rem;
+}
+
+.UsersList .user-options {
+  justify-self: flex-end;
+  color: #616161;
+  margin-left: auto;
+  display: none;
+}
+.user-content:hover .user-options {
+  display: flex;
+  flex-direction: row;
+}
+
+.delete:hover {
+  color: #9e9e9e;
+  cursor: pointer;
+}
+
+.edit {
+  padding: 0rem 1rem;
+}
+
+.edit:hover {
+  color: #9e9e9e;
+  cursor: pointer;
+}
+
+a:-webkit-any-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.UserProfile {
+  width: 100vw;
+  padding: 1rem;
+}
+
+.UserProfile .title-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  background-color: #326c9b;
+  padding: 0.5rem;
+  border-radius: 0.5em 0.5em 0em 0em;
+  color: white;
+}
+
+.UserProfile .title-bar-name {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 20px;
+}
+.UserProfile .title-bar-name h2 {
+  padding-right: 0.5em;
+}
+
+.UserProfile .title-bar h2 {
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: small;
+}
+
+.TransactionsItem {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: #212121;
+  color: white;
+  height: 340px;
+  justify-content: space-evenly;
+}
+
+.TransactionsItem h2 {
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: small;
+  letter-spacing: 0.2em;
+}
+
+.TransactionsItem p {
+  color: #9e9e9e;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: xx-small;
+}
+
+.TransactionsItem .transaction {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 45px;
+  padding: 0 1rem;
+  cursor: pointer;
+}
+
+.TransactionsItem .content {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.TransactionsItem .icon {
+  padding-right: 1rem;
+}
+
+.TransactionsItem .content-body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  height: 100%;
+}
+
+.TransactionsItem .selector-buttons {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  margin: 1rem;
+  height: 100%;
+}
+
+.TransactionsItem .submit-button {
+  flex: 1;
+  margin: 1rem;
+}
+
+.UserHistory {
+  height: 195px;
+  width: 100%;
+  background-color: #424242;
+  overflow-y: scroll;
+  border-radius: 0em 0em 0.5em 0.5em;
+}
+
+.UserHistory .history-item {
+  width: 100%;
+}
+
+.UserHistory .content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  padding: 0.5em 0em 0.5em 0.5em;
+}
+
+.UserHistory .name {
+  flex: 3;
+}
+
+.UserHistory .contact {
+  flex: 2;
+}
+.UserHistory h2 {
+  color: #d6d6d6;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: x-small;
+}
+
+.UserHistory p {
+  color: #9e9e9e;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: xx-small;
+  margin-left: 1em;
+}
+.UserHistory .line-spacer {
+  height: 2px;
+  background-color: #616161;
+  margin: 0rem 0.5rem;
+}
+
+.Transactions {
+  height: 100%;
+  width: 95%;
+  max-width: 700px;
+  background-color: #424242;
+  overflow-y: scroll;
+  border-radius: 0.5em;
+  margin: 1rem;
+}
+
+.Transactions .title {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0.5em;
+  color: white;
+  font-size: 20px;
+}
+
+.Transactions h1 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: medium;
+  padding-left: 0.25em;
+}
+
+.Transactions .history-item {
+  width: 100%;
+}
+
+.Transactions .content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+  padding: 0.5em 0.75em;
+}
+
+.Transactions .contact {
+  text-align: end;
+}
+
+.Transactions h2 {
+  color: #d6d6d6;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: x-small;
+}
+
+.Transactions p {
+  color: #9e9e9e;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: xx-small;
+  margin-left: 1.5em;
+}
+.Transactions .line-spacer {
+  height: 2px;
+  background-color: #616161;
+  margin: 0rem 0.75rem;
+}
+
+.EditUser {
+  width: 100%;
+  height: 100%;
+}
+.EditUser .form {
+  display: flex;
+  flex-direction: column;
+  margin-left: 3rem;
+  margin-top: 2rem;
+  color: #9e9e9e;
+  height: 90%;
+}
+
+.EditUser .field {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 1rem 0rem;
+}
+
+.EditUser label {
+  margin-right: 2rem;
+}
+
+.EditUser .buttons {
+  margin-top: auto;
+}
+
+.EditUser .save {
+  padding: 0.25rem 0.5rem;
+  color: white;
+  background-color: green;
+  border: 1px white solid;
+}
+
+.EditUser .exit {
+  padding: 0.25rem 0.5rem;
+  color: white;
+  background-color: black;
+  border: 1px white solid;
+  margin-left: 1rem;
+}
+
+.CheckoutForm {
+  display: flex;
+  flex-direction: column;
+  background-color: ghostwhite;
+  width: 475px;
+  height: 420px;
+  padding: 1rem;
+  margin-top: 3rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 0.5rem;
+}
+.CheckoutForm h2 {
+  margin-bottom: 0.75rem;
+  color: #616161;
+}
+
+.CheckoutForm .personal-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.CheckoutForm .number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: small;
+  background-color: #212121;
+  width: 1.2rem;
+  height: 1.2rem;
+  color: white;
+  margin-right: 0.25rem;
+}
+
+.CheckoutForm .name-field {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+.CheckoutForm .email-field {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: white;
+}
+
+.CheckoutForm .company-field {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: white;
+}
+
+.CheckoutForm .game-field {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 0.25rem;
+  background-color: white;
+}
+
+.CheckoutForm .card-field {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: white;
+}
+
+.CheckoutForm .total-field {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: white;
+  align-self: flex-end;
+  width: 150px;
+}
+
+.CheckoutForm .first-name {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  padding: 0.5rem;
+  flex: 1;
+  margin-right: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: white;
+}
+
+.CheckoutForm .last-name {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+  padding: 0.5rem;
+  flex: 1;
+  margin-left: 0.5rem;
+  border-radius: 0.25rem;
+  background-color: white;
+}
+
+.CheckoutForm label {
+  margin-top: 0.5rem;
+}
+
+.CheckoutForm input {
+  border: none;
+  outline: none;
+  width: 100%;
+}
+
+.CheckoutForm button {
+  background-color: green;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-top: auto;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.CheckoutForm button:hover {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
 }
