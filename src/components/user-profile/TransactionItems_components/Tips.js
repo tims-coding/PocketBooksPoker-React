@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FiPlus } from "react-icons/fi";
 import { FiArrowDown } from "react-icons/fi";
@@ -8,6 +8,7 @@ import useCreateTransaction from "../../../hooks/transaction_hooks/useCreateTran
 import telegramMessage from "../../../api/telegram/telegram_api";
 import useUser from "../../../hooks/users_hooks/useUser";
 import { toast } from "react-toastify";
+import { Context } from "../../../store/store";
 
 const Tips = ({ setOption }) => {
   const { id } = useParams();
@@ -15,6 +16,7 @@ const Tips = ({ setOption }) => {
   const [amount, setAmount] = useState(0);
   const [percentage, setPercentage] = useState(0);
   const [selection, setSelection] = useState(0);
+  const [token] = useContext(Context);
   let button;
 
   const editUserTips = useEditUserTips();
@@ -48,11 +50,14 @@ const Tips = ({ setOption }) => {
       amount: amount,
       transaction: "Turn In Tips",
       note: "",
+      gameToken: token.token,
     });
-    telegramMessage({
-      chatID: userQuery.data.telegram,
-      message: message,
-    });
+    if (userQuery.data.telegram.length > 0) {
+      telegramMessage({
+        chatID: userQuery.data.telegram,
+        message: message,
+      });
+    }
     successMessage();
     setAmount(0);
     setOption(0);
@@ -82,11 +87,14 @@ const Tips = ({ setOption }) => {
         amount: amount,
         transaction: "Transfer Tips",
         note: "",
+        gameToken: token.token,
       });
-      telegramMessage({
-        chatID: userQuery.data.telegram,
-        message: message,
-      });
+      if (userQuery.data.telegram.length > 0) {
+        telegramMessage({
+          chatID: userQuery.data.telegram,
+          message: message,
+        });
+      }
       transferMessage();
       setAmount(0);
       setOption(0);

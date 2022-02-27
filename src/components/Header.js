@@ -11,7 +11,7 @@ const Header = ({ title }) => {
           <FaQrcode />
         </Link>
         <FaUserAlt />
-        <Link to="/">
+        <Link to="/home">
           <FaHome />
         </Link>
       </div>

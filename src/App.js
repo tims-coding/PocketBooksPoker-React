@@ -6,6 +6,8 @@ import Transactions from "./pages/Transactions";
 import EditUser from "./pages/EditUser";
 import QrCode from "./pages/QrCode";
 import PaymentPage from "./pages/PaymentPage";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
   return (
@@ -13,8 +15,10 @@ function App() {
       <Router>
         <Header title="PocketBooks Poker" />
         <Routes>
-          <Route exact path="/" element={<Home />} />
+          <Route exact path="/" element={<Login />} />
+          <Route exact path="/home" element={<Home />} />
           <Route exact path="/qr" element={<QrCode />} />
+          <Route exact path="/register" element={<Register />} />
           <Route exact path="/user/:id" element={<UserProfile />} />
           <Route exact path="/transactions" element={<Transactions />} />
           <Route exact path="/edit/:id" element={<EditUser />} />

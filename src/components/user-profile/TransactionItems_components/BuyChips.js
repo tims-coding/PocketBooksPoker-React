@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { FiPlus } from "react-icons/fi";
 import { FiArrowDown } from "react-icons/fi";
@@ -7,12 +7,14 @@ import useCreateTransaction from "../../../hooks/transaction_hooks/useCreateTran
 import telegramMessage from "../../../api/telegram/telegram_api";
 import useUser from "../../../hooks/users_hooks/useUser";
 import { toast } from "react-toastify";
+import { Context } from "../../../store/store";
 
 const BuyChips = ({ setOption }) => {
   const { id } = useParams();
   const userQuery = useUser(id);
   const [selection, setSelection] = useState(0);
   const [amount, setAmount] = useState(0);
+  const [token] = useContext(Context);
   let button;
   const editUserBalance = useEditUserBalance();
   const makeTransaction = useCreateTransaction();
@@ -34,11 +36,14 @@ const BuyChips = ({ setOption }) => {
       amount: amount,
       transaction: "Buy Chips",
       note: "",
+      gameToken: token.token,
     });
-    telegramMessage({
-      chatID: userQuery.data.telegram,
-      message: message,
-    });
+    if (userQuery.data.telegram.length > 0) {
+      telegramMessage({
+        chatID: userQuery.data.telegram,
+        message: message,
+      });
+    }
     cashSuccessMessage();
     setAmount(0);
     setOption(0);
@@ -58,11 +63,14 @@ const BuyChips = ({ setOption }) => {
       amount: amount,
       transaction: "Marker",
       note: "",
+      gameToken: token.token,
     });
-    telegramMessage({
-      chatID: userQuery.data.telegram,
-      message: message,
-    });
+    if (userQuery.data.telegram.length > 0) {
+      telegramMessage({
+        chatID: userQuery.data.telegram,
+        message: message,
+      });
+    }
     successMessage();
     setAmount(0);
     setOption(0);

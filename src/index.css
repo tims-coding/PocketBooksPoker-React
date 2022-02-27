@@ -543,31 +543,42 @@ a:-webkit-any-link {
   margin-left: 1rem;
 }
 
-.CheckoutForm {
+.Register {
   display: flex;
-  flex-direction: column;
-  background-color: ghostwhite;
-  width: 475px;
-  height: 420px;
-  padding: 1rem;
-  margin-top: 3rem;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  border-radius: 0.5rem;
-}
-.CheckoutForm h2 {
-  margin-bottom: 0.75rem;
-  color: #616161;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
 }
 
-.CheckoutForm .personal-info {
+.Register section {
+  width: 500px;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1rem;
+  background-color: ghostwhite;
+  border-radius: 0.25rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.Register .personal-info {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  margin-bottom: 0.25rem;
 }
 
-.CheckoutForm .number {
+.Register .registration-info {
+  margin-top: 1rem;
+}
+
+.Register .payment-info {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.Register .number {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -579,13 +590,102 @@ a:-webkit-any-link {
   margin-right: 0.25rem;
 }
 
-.CheckoutForm .name-field {
+.Register form {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: space-evenly;
+  flex-grow: 1;
+  padding-bottom: 1rem;
+}
+
+.Register a,
+.Register a:visited {
+  color: #000;
+  padding-top: 0.25rem;
+  text-decoration: underline;
+}
+
+.Register input[type="text"],
+.Register input[type="password"],
+.Register button,
+.Register textarea {
+  font-family: "Nunito", sans-serif;
+  font-size: small;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  border: none;
+  outline: none;
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.Register label,
+.Register button {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}
+.Register button {
+  padding: 0.5rem;
+  background-color: green;
+  color: white;
+  border-radius: 0;
+  box-shadow: none;
+  cursor: pointer;
+}
+
+.Register button:hover {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.Register .instructions {
+  font-size: 0.75rem;
+  border-radius: 0.5rem;
+  background: #2196f3;
+  color: #fff;
+  padding: 0.25rem;
+  position: relative;
+  bottom: -10px;
+  margin-bottom: 0.2rem;
+}
+
+.Register .instructions > svg {
+  margin-right: 0.25rem;
+}
+
+.Register .offscreen {
+  position: absolute;
+  left: -9999px;
+}
+
+.Register .hide {
+  display: none;
+}
+
+.Register .valid {
+  color: limegreen;
+  margin-left: 0.25rem;
+}
+
+.Register .invalid {
+  color: red;
+  margin-left: 0.25rem;
+}
+
+.Register .errmsg {
+  background-color: lightpink;
+  color: firebrick;
+  font-weight: bold;
+  padding: 0.5rem;
   margin-bottom: 0.5rem;
 }
-.CheckoutForm .email-field {
+
+.Register .line {
+  display: inline-block;
+  margin-top: 0.25rem;
+}
+
+.register-card-field {
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
   padding: 0.5rem;
@@ -594,34 +694,7 @@ a:-webkit-any-link {
   background-color: white;
 }
 
-.CheckoutForm .company-field {
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-  padding: 0.5rem;
-  margin-bottom: 0.5rem;
-  border-radius: 0.25rem;
-  background-color: white;
-}
-
-.CheckoutForm .game-field {
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
-  border-radius: 0.25rem;
-  background-color: white;
-}
-
-.CheckoutForm .card-field {
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-  padding: 0.5rem;
-  margin-bottom: 0.5rem;
-  border-radius: 0.25rem;
-  background-color: white;
-}
-
-.CheckoutForm .total-field {
+.Register .total-field {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -636,49 +709,115 @@ a:-webkit-any-link {
   width: 150px;
 }
 
-.CheckoutForm .first-name {
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-  padding: 0.5rem;
-  flex: 1;
-  margin-right: 0.5rem;
-  border-radius: 0.25rem;
-  background-color: white;
-}
-
-.CheckoutForm .last-name {
-  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
-    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
-  padding: 0.5rem;
-  flex: 1;
-  margin-left: 0.5rem;
-  border-radius: 0.25rem;
-  background-color: white;
-}
-
-.CheckoutForm label {
-  margin-top: 0.5rem;
-}
-
-.CheckoutForm input {
-  border: none;
-  outline: none;
-  width: 100%;
-}
-
-.CheckoutForm button {
-  background-color: green;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  margin-top: auto;
-  cursor: pointer;
+.Login {
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100vh;
 }
 
-.CheckoutForm button:hover {
+.Login section {
+  width: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 1rem;
+  background-color: ghostwhite;
+  border-radius: 0.25rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.Login form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  flex-grow: 1;
+  padding-bottom: 1rem;
+}
+
+.Login a,
+.Login a:visited {
+  color: #000;
+  text-decoration: underline;
+}
+
+.Login input[type="text"],
+.Login input[type="password"],
+.Login button,
+.Login textarea {
+  font-family: "Nunito", sans-serif;
+  font-size: small;
+  padding: 0.5rem;
+  margin: 0;
+  border-radius: 0.25rem;
+  border: none;
+  outline: none;
   box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
     rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.Login label,
+.Login button {
+  margin-top: 1rem;
+}
+
+.Login button {
+  border-radius: 0;
+  padding: 0.5rem;
+  background-color: #2196f3;
+  color: white;
+  box-shadow: none;
+  font-size: medium;
+  cursor: pointer;
+}
+
+.Login button:hover {
+  box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px,
+    rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.Login .instructions {
+  font-size: 0.75rem;
+  border-radius: 0.5rem;
+  background: #000;
+  color: #fff;
+  padding: 0.25rem;
+  position: relative;
+  bottom: -10px;
+}
+
+.Login .instructions > svg {
+  margin-right: 0.25rem;
+}
+
+.Login .offscreen {
+  position: absolute;
+  left: -9999px;
+}
+
+.Login .hide {
+  display: none;
+}
+
+.Login .valid {
+  color: limegreen;
+  margin-left: 0.25rem;
+}
+
+.Login .invalid {
+  color: red;
+  margin-left: 0.25rem;
+}
+
+.Login .errmsg {
+  background-color: lightpink;
+  color: firebrick;
+  font-weight: bold;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.Login .line {
+  display: inline-block;
+  margin-top: 0.25rem;
 }

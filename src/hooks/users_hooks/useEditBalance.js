@@ -7,7 +7,7 @@ export default function useEditUserBalance() {
     (newUser) =>
       axios
         .put(
-          `http://10.0.0.246:3002/players/edit/balance/${newUser.id}`,
+          `http://10.0.0.247:3002/players/edit/balance/${newUser.id}`,
           newUser
         )
         .then((res) => res.data),

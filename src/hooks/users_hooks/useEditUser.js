@@ -6,7 +6,7 @@ export default function useEditUser() {
   return useMutation(
     (newUser) =>
       axios
-        .put(`http://10.0.0.246:3002/players/edit/${newUser.id}`, newUser)
+        .put(`http://10.0.0.247:3002/players/edit/${newUser.id}`, newUser)
         .then((res) => res.data),
     {
       onSuccess: () => {

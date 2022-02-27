@@ -6,7 +6,7 @@ export default function useCreateUser() {
   return useMutation(
     (newUser) =>
       axios
-        .post("http://10.0.0.246:3002/players/post", newUser)
+        .post("http://10.0.0.247:3002/players/post", newUser)
         .then((res) => res.data),
     {
       onSuccess: () => {

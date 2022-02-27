@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FiPlus } from "react-icons/fi";
 import { FiArrowDown } from "react-icons/fi";
@@ -6,11 +6,13 @@ import useCreateTransaction from "../../../hooks/transaction_hooks/useCreateTran
 import telegramMessage from "../../../api/telegram/telegram_api";
 import useUser from "../../../hooks/users_hooks/useUser";
 import { toast } from "react-toastify";
+import { Context } from "../../../store/store";
 
 const Donation = ({ setOption }) => {
   const { id } = useParams();
   const userQuery = useUser(id);
   const [amount, setAmount] = useState(0);
+  const [token] = useContext(Context);
   const makeTransaction = useCreateTransaction();
   toast.configure();
   const successMessage = () => {
@@ -25,11 +27,14 @@ const Donation = ({ setOption }) => {
       amount: amount,
       transaction: "Donation",
       note: "",
+      gameToken: token.token,
     });
-    telegramMessage({
-      chatID: userQuery.data.telegram,
-      message: message,
-    });
+    if (userQuery.data.telegram.length > 0) {
+      telegramMessage({
+        chatID: userQuery.data.telegram,
+        message: message,
+      });
+    }
     successMessage();
     setAmount(0);
     setOption(0);

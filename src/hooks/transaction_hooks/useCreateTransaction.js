@@ -6,7 +6,7 @@ export default function useCreateTransaction() {
   return useMutation(
     (newTransaction) =>
       axios
-        .post("http://10.0.0.246:3002/transactions/post", newTransaction)
+        .post("http://10.0.0.247:3002/transactions/post", newTransaction)
         .then((res) => res.data),
     {
       onSuccess: () => {

@@ -38,7 +38,7 @@ export const CheckoutForm = () => {
           successMessage();
           setLoading(false);
           setPayment("Successful!");
-          setTimeout(function () {
+          setTimeout(() => {
             navigate("/");
           }, 2000);
         }
@@ -56,7 +56,13 @@ export const CheckoutForm = () => {
 
   if (loading) {
     button = (
-      <button>
+      <button
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <ThreeDots color="#fff" height={11} />
       </button>
     );

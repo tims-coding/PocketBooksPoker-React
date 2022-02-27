@@ -6,7 +6,7 @@ export default function useDeleteUser() {
   return useMutation(
     (id) =>
       axios
-        .delete(`http://10.0.0.246:3002/players/delete/${id}`, id)
+        .delete(`http://10.0.0.247:3002/players/delete/${id}`, id)
         .then((res) => res.data),
     {
       onSuccess: () => {

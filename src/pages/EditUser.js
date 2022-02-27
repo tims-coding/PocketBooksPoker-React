@@ -52,7 +52,7 @@ const EditUser = () => {
         employeestatus: 1,
         epaystatus: 1,
       });
-      setTimeout(() => navigate("/"), 500);
+      setTimeout(() => navigate("/home"), 500);
     }
   };
 
@@ -152,7 +152,7 @@ const EditUser = () => {
                   : "SAVE"
               }
             />
-            <Link to="/">
+            <Link to="/home">
               <input className="exit" type="button" value="Go Back" />
             </Link>
           </div>

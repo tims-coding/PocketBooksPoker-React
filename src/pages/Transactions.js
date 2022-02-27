@@ -7,18 +7,22 @@ const Transactions = () => {
   const transactionsQuery = useTransactions();
 
   if (transactionsQuery.isError) {
+    console.log("failed");
     return <h1>Failed to get Transactions</h1>;
   }
   if (transactionsQuery.isLoading) {
+    console.log("loading");
     return <RevolvingDot color="#fff" height={30} />;
   }
 
   if (transactionsQuery.isSuccess) {
+    console.log("success");
+    console.log(transactionsQuery.data);
     return (
       <div className="Transactions">
         <div className="title">
           <MdHistory />
-          <h1>Tranaction History</h1>
+          <h1>Transaction History</h1>
         </div>
         <div className="line-spacer"></div>
         {transactionsQuery.data.length > 0 && (

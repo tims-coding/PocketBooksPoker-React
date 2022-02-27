@@ -4,7 +4,8 @@ import { BiTable } from "react-icons/bi";
 import { MdBubbleChart } from "react-icons/md";
 import { FiPlus } from "react-icons/fi";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { Context } from "../../store/store";
 import useCreateUser from "../../hooks/users_hooks/useCreateUser";
 import useUsers from "../../hooks/users_hooks/useUsers";
 import { toast } from "react-toastify";
@@ -14,6 +15,7 @@ toast.configure();
 
 const Selections = () => {
   const [userName, setUserName] = useState("");
+  const [token] = useContext(Context);
 
   const createUser = useCreateUser();
   const usersQuery = useUsers();
@@ -23,7 +25,7 @@ const Selections = () => {
     usersQuery.data.map((user) => {
       return nameList.push(user.name.toUpperCase());
     });
-
+    console.log(token.token);
     if (!userName) {
       console.log("No Username submitted");
     } else if (nameList.includes(userName.toUpperCase().trim())) {
@@ -31,6 +33,7 @@ const Selections = () => {
     } else {
       createUser.mutate({
         name: userName.trim(),
+        gameToken: token.token,
       });
       success();
       setUserName("");
